@@ -27,8 +27,12 @@ export const HomePage = ({
             Welcome to Marketeer!
           </h2>
           <p className="text-2xl mb-6 text-white">
-            Discover our range of products designed to help you market better.
+            Discover our range of products that you can trust. From electronics
+            to apparel, we have it all and more.
           </p>
+          <button className="bg-blue-500 hover:cursor-pointer text-white px-6 py-3 rounded hover:bg-blue-600">
+            Shop Now
+          </button>
         </div>
       </section>
       <section className="w-full h-full p-8 px-60 bg-white rounded-lg shadow-md">
