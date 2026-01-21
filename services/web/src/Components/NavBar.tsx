@@ -12,13 +12,13 @@ export const NavBar = () => {
             </a>
           </li>
           <li>
-            <a href="/products" className="hover:text-blue-700 text-xl">
-              Products
+            <a href="/about" className="hover:text-blue-700 text-xl">
+              About
             </a>
           </li>
           <li>
-            <a href="/about" className="hover:text-blue-700 text-xl">
-              About
+            <a href="/products" className="hover:text-blue-700 text-xl">
+              Products
             </a>
           </li>
           <li>

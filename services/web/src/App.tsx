@@ -5,6 +5,7 @@ import { ProductDetailPage } from './pages/ProductDetailPage';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'
+import { AboutPage } from './pages/AboutPage';
 
 function App() {
   const [productIndex, setProductIndex] = useState(1);
@@ -13,6 +14,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage setProductIndex={setProductIndex} />} />
+        <Route path="/about" element={<AboutPage />} />
+
         <Route path='/productdetails' element={<ProductDetailPage productIndex={productIndex} />} />
       </Routes>
     </Router>
