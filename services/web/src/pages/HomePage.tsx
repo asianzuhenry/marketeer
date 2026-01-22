@@ -40,11 +40,11 @@ export const HomePage = ({
         </div>
       </section>
       <section 
-      className="w-full h-full p-8 lg:px-60 rounded-lg shadow-md">
+      className="w-full h-full p-8 lg:px-60 rounded-lg shadow-md flex flex-col items-center bg-gray-200">
         <h2 className="text-3xl font-bold mb-4 text-center">Our Products</h2>
         <hr className="border-t border-gray-300 mb-4 py-12" />
         <div 
-        className="lg:w-full lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 sm:flex sm:justify-center flex-col items-center">
+        className="w-full p-2 lg:w-full lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 flex sm:justify-center flex-col items-center">
           {products.map((product: Product, index: number) => {
             return (
               <ProductCard
