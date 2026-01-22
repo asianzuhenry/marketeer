@@ -29,7 +29,7 @@ export const NavBar = (
           </a>
           <a
             href="/cart"
-            className="hover:text-blue-700 text-xl bg-amber-700 p-2 rounded cursor-pointer flex items-center gap-2 justify-between"
+            className="hover:text-blue-700 bg-amber-700 min-w-12 px-6 py-3 text-base rounded cursor-pointer flex items-center gap-2 justify-between"
           >
             Cart{" "}
             <div className="bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center">
@@ -66,7 +66,7 @@ export const NavBar = (
           <li className="flex items-center gap-2">
             <a
               href="/cart"
-              className="hover:text-blue-700 text-xl bg-amber-700 p-1 rounded-2xl flex items-center justify-between gap-3"
+              className="hover:text-blue-700 bg-amber-700 min-w-12 px-6 py-3 text-base rounded-2xl flex items-center justify-between gap-3"
             >
               Cart
               <div className="bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center">

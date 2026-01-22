@@ -45,12 +45,13 @@ export const CartPage = ({
       <h2 className="text-2xl text-center font-bold">CartPage</h2> {/* Cart Items List bold text */}
       <hr className="my-4 border-gray-700 border-b-2" />
       <div className="mt-4 flex justify-between items-center">
-        <p>
+        <p
+          className="text-xl font-semibold">
           Total Cost: UGX{" "}
           {expense}
         </p>
         <button
-          className="p-2 bg-red-700 rounded-2xl text-white text-xl cursor-pointer hover:bg-red-600"
+          className="p-2 bg-red-700 rounded text-white min-w-12 px-6 py-3 text-base cursor-pointer hover:bg-red-600"
           onClick={() => setCartItems([])}
         >
           Clear Cart
@@ -76,7 +77,7 @@ export const CartPage = ({
                   <p className="text-gray-700">Price: UGX {product?.price}</p>
                 </div>
                 <div className="mt-2 flex flex-col ml-auto items-end">
-                  <p className="text-gray-700">Product ID: {itemId}</p>
+                  <p className="text-gray-700">Product ID: {itemId}-dsvdgfhjkjgfs</p>
                   <div className="mt-2 flex items-center gap-2 p-2 rounded w-72 justify-left align-middle">
                     <p className="flex align-middle justify-left w-full gap-4">
                       Quantity:

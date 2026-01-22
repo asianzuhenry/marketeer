@@ -53,14 +53,14 @@ export const ProductDetailPage = ({
             <div>
               {product.status === "Instock" ? (
                 <button
-                  className="mt-4 bg-blue-700 hover:cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-600"
+                  className="mt-4 bg-blue-700 hover:cursor-pointer text-white min-w-12 px-6 py-3 text-base rounded hover:bg-blue-600"
                   onClick={() => setCartItems([...cartItems, product.id])}
                 >
                   Add to Cart
                 </button>
               ) : (
                 <button
-                  className="mt-4 cursor-not-allowed bg-gray-400 text-white px-4 py-2 rounded"
+                  className="mt-4 cursor-not-allowed bg-gray-400 text-white min-w-12 px-6 py-3 text-base rounded"
                   disabled
                 >
                   Out of Stock

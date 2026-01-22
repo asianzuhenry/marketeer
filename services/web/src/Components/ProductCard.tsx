@@ -40,14 +40,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       <div className="flex justify-center gap-12">
         {product.status === "Instock" ? (
           <button
-            className="mt-4 hover:cursor-pointer bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="mt-4 hover:cursor-pointer bg-blue-700 text-white min-h-12 min-w-12 px-6 py-3 text-base rounded hover:bg-blue-600"
             onClick={() => setCartItems([...cartItems, product.id])}
           >
             Add to Cart
           </button>
         ) : (
           <button
-            className="mt-4 cursor-not-allowed bg-gray-400 text-white px-4 py-2 rounded"
+            className="mt-4 cursor-not-allowed bg-gray-400 text-white min-w-12 px-6 py-3 text-base rounded"
             disabled
           >
             Out of Stock
@@ -58,7 +58,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           state={{ productIndex: index }}
           onClick={() => setIndex()}
         >
-          <button className="mt-4 ml-2 cursor-pointer bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">
+          <button className="mt-4 ml-2 cursor-pointer bg-green-700 inline-flex items-center justify-center text-white min-h-12 min-w-12 px-6 py-3 text-base rounded hover:bg-green-600">
             View Details
           </button>
         </Link>
