@@ -1,7 +1,22 @@
 import { Link } from "react-router-dom";
 import type { Product } from "../types/basetypes";
 
-export const ProductCard = ({ product, setProductIndex, index }: { product: Product, setProductIndex: (index: number) => void, index: number }) => {
+interface ProductCardProps {
+  product: Product;
+  setProductIndex: (index: number) => void;
+  index: number;
+  cartItems: number[]; // Assuming product IDs are numbers; adjust type as needed
+  setCartItems: (items: number[]) => void;
+}
+
+export const ProductCard: React.FC<ProductCardProps> = (
+  { 
+    product, setProductIndex, 
+    index,
+    cartItems, 
+    setCartItems
+
+  }) => {
 
   const setIndex = () => {
     setProductIndex(index);
@@ -18,7 +33,10 @@ export const ProductCard = ({ product, setProductIndex, index }: { product: Prod
       <p className="text-lg font-semibold">UGX: {product.price}</p>
       <p className="text-gray-700 mb-2">Category: {product.category}</p>
       <div className="flex justify-center gap-12">
-        <button className="mt-4 hover:cursor-pointer bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        <button 
+          className="mt-4 hover:cursor-pointer bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          onClick={() => setCartItems([...cartItems, product.id])}
+        >
           Add to Cart
         </button>
         <Link to="/productdetails" state={{ productIndex: index }} onClick={() => setIndex()}>

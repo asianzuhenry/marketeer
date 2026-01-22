@@ -3,32 +3,36 @@ import { products } from "../data/products";
 
 export const ProductDetailPage = ({
   productIndex,
+  cartItems,
+  setCartItems,
 }: {
   productIndex: number;
+  cartItems: number[];
+  setCartItems: (items: number[]) => void;
 }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const product = products[productIndex]; // Example: Get the first product
 
-  const autoSetNextImage = () => {
-    if (product.otherImages && product.otherImages.length > 1) {
-      setTimeout(() => {
-        setSelectedImage((prevIndex) => {
-          if (prevIndex + 1 < product.otherImages!.length) {
-            console.log(prevIndex);
-            return prevIndex + 1;
-          } else {
-            console.log(prevIndex);
-            return 0;
-          }
-        });
-      }, 5000); // Change image every 5 seconds
-    }
-  };
+  // const autoSetNextImage = () => {
+  //   if (product.otherImages && product.otherImages.length > 1) {
+  //     setTimeout(() => {
+  //       setSelectedImage((prevIndex) => {
+  //         if (prevIndex + 1 < product.otherImages!.length) {
+  //           console.log(prevIndex);
+  //           return prevIndex + 1;
+  //         } else {
+  //           console.log(prevIndex);
+  //           return 0;
+  //         }
+  //       });
+  //     }, 5000); // Change image every 5 seconds
+  //   }
+  // };
 
-  autoSetNextImage();
+  // autoSetNextImage();
   return (
     <>
-      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full m-4">
+      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full sm:w-[90%] m-4">
         <h2 className="text-2xl font-bold mb-4">Product Details</h2>
         <div className="mt-4 flex space-x-8">
           {/* DetailsCard content would go here */}
@@ -47,7 +51,10 @@ export const ProductDetailPage = ({
               <p className="text-red-600 mb-2">{product.status}</p>
             )}
             <div>
-              <button className="mt-4 bg-blue-500 hover:cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-600">
+              <button 
+              className="mt-4 bg-blue-500 hover:cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-600"
+              onClick={() => setCartItems([...cartItems, product.id])}
+              >
                 Add to Cart
               </button>
             </div>
@@ -80,7 +87,7 @@ export const ProductDetailPage = ({
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full m-4">
+      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full sm:w-[90%] m-4">
         {/* Reviews section would go here */}
         <h2 className="text-2xl font-bold mb-4">Customer Reviews</h2>
       </div>
