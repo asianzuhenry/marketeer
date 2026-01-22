@@ -34,7 +34,7 @@ export const HomePage = ({
             Discover our range of products that you can trust. From electronics
             to apparel, we have it all and more.
           </p>
-          <button className="bg-blue-500 hover:cursor-pointer text-white px-6 py-3 rounded hover:bg-blue-600">
+          <button className="bg-green-500 hover:cursor-pointer text-white px-6 py-3 text-xl rounded hover:bg-green-600">
             Shop Now
           </button>
         </div>

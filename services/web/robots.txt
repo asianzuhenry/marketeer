@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Allow: /sitemap.xml
+Sitemap: https://www.marketeer.com/sitemap.xml
