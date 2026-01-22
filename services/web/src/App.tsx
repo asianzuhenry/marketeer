@@ -29,7 +29,7 @@ function App() {
             element={<HomePage setProductIndex={setProductIndex} setCartItems={setCartItems} cartItems={cartItems} />}
           />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
+          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
 
           <Route
             path="/productdetails"
