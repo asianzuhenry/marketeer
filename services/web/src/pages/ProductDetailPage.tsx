@@ -39,24 +39,33 @@ export const ProductDetailPage = ({
           <img
             src={product.otherImages?.[selectedImage]}
             alt={product.name}
-            className="w-2/4 h-4/6 object-cover"
+            className="w-80 h-full object-cover rounded-2xl border-4 border-blue-500"
           />
           <div>
             <h3 className="text-2xl mb-2 font-semibold">{product.name}</h3>
             <p className="text-gray-600 mb-2">{product.description}</p>
             <p className="text-lg font-bold mt-2 ">${product.price}</p>
             {product.status === "Instock" ? (
-              <p className="text-green-600 mb-2">{product.status}</p>
+              <p className="text-green-700 mb-2">{product.status}</p>
             ) : (
-              <p className="text-red-600 mb-2">{product.status}</p>
+              <p className="text-red-700 mb-2">{product.status}</p>
             )}
             <div>
-              <button 
-              className="mt-4 bg-blue-500 hover:cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-600"
-              onClick={() => setCartItems([...cartItems, product.id])}
-              >
-                Add to Cart
-              </button>
+              {product.status === "Instock" ? (
+                <button
+                  className="mt-4 bg-blue-700 hover:cursor-pointer text-white px-4 py-2 rounded hover:bg-blue-600"
+                  onClick={() => setCartItems([...cartItems, product.id])}
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <button
+                  className="mt-4 cursor-not-allowed bg-gray-400 text-white px-4 py-2 rounded"
+                  disabled
+                >
+                  Out of Stock
+                </button>
+              )}
             </div>
             {product.otherImages && product.otherImages.length > 0 && (
               <div className="mt-4">

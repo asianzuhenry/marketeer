@@ -42,15 +42,15 @@ export const CartPage = ({
 
   return (
     <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full sm:w-[90%] m-4">
-      <h2 className="text-2xl text-center">CartPage</h2>
-      <hr className="my-4 border-gray-500 border-b-2" />
+      <h2 className="text-2xl text-center font-bold">CartPage</h2> {/* Cart Items List bold text */}
+      <hr className="my-4 border-gray-700 border-b-2" />
       <div className="mt-4 flex justify-between items-center">
         <p>
           Total Cost: UGX{" "}
           {expense}
         </p>
         <button
-          className="p-2 bg-red-500 rounded-2xl text-white text-xl cursor-pointer hover:bg-red-600"
+          className="p-2 bg-red-700 rounded-2xl text-white text-xl cursor-pointer hover:bg-red-600"
           onClick={() => setCartItems([])}
         >
           Clear Cart
@@ -73,15 +73,15 @@ export const CartPage = ({
                 />
                 <div className="mt-2 flex flex-col">
                   <h3 className="text-xl font-semibold">{product?.name}</h3>
-                  <p className="text-gray-600">Price: UGX {product?.price}</p>
+                  <p className="text-gray-700">Price: UGX {product?.price}</p>
                 </div>
                 <div className="mt-2 flex flex-col ml-auto items-end">
-                  <p className="text-gray-600">Product ID: {itemId}</p>
+                  <p className="text-gray-700">Product ID: {itemId}</p>
                   <div className="mt-2 flex items-center gap-2 p-2 rounded w-72 justify-left align-middle">
                     <p className="flex align-middle justify-left w-full gap-4">
                       Quantity:
                       <button
-                        className="bg-blue-500 text-white px-8 py-2 rounded hover:bg-blue-600"
+                        className="bg-blue-700 text-white text-2xl font-bold px-8 py-2 rounded hover:bg-blue-600"
                         onClick={() => {
                           decreaseQuantity(Number(itemId));
                         }}
@@ -91,7 +91,7 @@ export const CartPage = ({
                       {/** decrease quantity */}
                       {quantityMap[Number(itemId)]}
                       <button
-                        className="bg-blue-500 text-white px-8 py-2 rounded hover:bg-blue-600"
+                        className="bg-blue-700 text-white text-2xl font-bold px-8 py-2 rounded hover:bg-blue-600"
                         onClick={() => {
                           increaseQuantity(Number(itemId));
                         }}

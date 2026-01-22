@@ -9,15 +9,13 @@ interface ProductCardProps {
   setCartItems: (items: number[]) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = (
-  { 
-    product, setProductIndex, 
-    index,
-    cartItems, 
-    setCartItems
-
-  }) => {
-
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  setProductIndex,
+  index,
+  cartItems,
+  setCartItems,
+}) => {
   const setIndex = () => {
     setProductIndex(index);
   };
@@ -31,16 +29,36 @@ export const ProductCard: React.FC<ProductCardProps> = (
       <h2 className="text-xl font-bold mb-2">{product.name}</h2>
       <p className="text-gray-700 mb-2">{product.description}</p>
       <p className="text-lg font-semibold">UGX: {product.price}</p>
-      <p className="text-gray-700 mb-2">Category: {product.category}</p>
+      <div className="flex flex-col">
+        <p className="text-gray-700 mb-2">Category: {product.category}</p>
+        {product.status === "Instock" ? (
+          <p className="text-green-700">{product.status}</p>
+        ) : (
+          <p className="text-red-700">{product.status}</p>
+        )}
+      </div>
       <div className="flex justify-center gap-12">
-        <button 
-          className="mt-4 hover:cursor-pointer bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          onClick={() => setCartItems([...cartItems, product.id])}
+        {product.status === "Instock" ? (
+          <button
+            className="mt-4 hover:cursor-pointer bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600"
+            onClick={() => setCartItems([...cartItems, product.id])}
+          >
+            Add to Cart
+          </button>
+        ) : (
+          <button
+            className="mt-4 cursor-not-allowed bg-gray-400 text-white px-4 py-2 rounded"
+            disabled
+          >
+            Out of Stock
+          </button>
+        )}
+        <Link
+          to="/productdetails"
+          state={{ productIndex: index }}
+          onClick={() => setIndex()}
         >
-          Add to Cart
-        </button>
-        <Link to="/productdetails" state={{ productIndex: index }} onClick={() => setIndex()}>
-          <button className="mt-4 ml-2 cursor-pointer bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+          <button className="mt-4 ml-2 cursor-pointer bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600">
             View Details
           </button>
         </Link>
