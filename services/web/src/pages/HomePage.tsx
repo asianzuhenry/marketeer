@@ -60,7 +60,7 @@ export const HomePage = ({
         </div>
       </section>
       <section 
-      className="w-full h-full p-8 px-60 sm:px-12 bg-gray-600 shadow-md">
+      className="bg-gray-600 p-8 px-6 md:px-20 lg:px-60">
         <h2 className="text-3xl font-bold mb-4 text-center">Our Services</h2>
         <hr className="border-t border-gray-300 mb-4 py-12" />
         <p className="text-lg text-white text-center">
