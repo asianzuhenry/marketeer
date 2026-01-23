@@ -32,9 +32,9 @@ export const ProductDetailPage = ({
   // autoSetNextImage();
   return (
     <>
-      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full sm:w-[90%] m-4">
+      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-[90%] m-4">
         <h2 className="text-2xl font-bold mb-4">Product Details</h2>
-        <div className="mt-4 flex space-x-8">
+        <div className="mt-4 flex flex-col md:flex-row space-x-8">
           {/* DetailsCard content would go here */}
           <img
             src={product.otherImages?.[selectedImage]}
@@ -96,7 +96,7 @@ export const ProductDetailPage = ({
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full sm:w-[90%] m-4">
+      <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-[90%] m-4">
         {/* Reviews section would go here */}
         <h2 className="text-2xl font-bold mb-4">Customer Reviews</h2>
       </div>

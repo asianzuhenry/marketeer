@@ -41,17 +41,14 @@ export const CartPage = ({
   }, 0);
 
   return (
-    <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-full sm:w-[90%] m-4">
-      <h2 className="text-2xl text-center font-bold">CartPage</h2> {/* Cart Items List bold text */}
+    <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-[90] m-4 flex flex-col align-middle justify-center">
+      <h2 className="text-2xl text-center font-bold">CartPage</h2>{" "}
+      {/* Cart Items List bold text */}
       <hr className="my-4 border-gray-700 border-b-2" />
       <div className="mt-4 flex justify-between items-center">
-        <p
-          className="text-xl font-semibold">
-          Total Cost: UGX{" "}
-          {expense}
-        </p>
+        <p className="md:text-xl font-semibold">Total Cost: UGX {expense}</p>
         <button
-          className="p-2 bg-red-700 rounded text-white min-w-12 px-6 py-3 text-base cursor-pointer hover:bg-red-600"
+          className="p-2 bg-red-700 rounded text-white min-w-12 px-6 py-3 sm:px-3 text-base cursor-pointer hover:bg-red-600"
           onClick={() => setCartItems([])}
         >
           Clear Cart
@@ -62,10 +59,9 @@ export const CartPage = ({
           Object.keys(quantityMap).map((itemId) => {
             const product = products.find((prod) => prod.id === Number(itemId));
             return (
-              // <Link to="/productdetails" state={{ productIndex: product?.id }} onClick={() => setIndex?.(product?.id || 0)}>
               <div
                 key={itemId}
-                className="border-b border-gray-300 py-4 hover:bg-gray-200 p-2 rounded transition-colors duration-300 cursor-pointer flex items-center gap-4"
+                className="border-b border-gray-300 py-4 hover:bg-gray-200 p-2 rounded transition-colors duration-300 cursor-pointer flex flex-col md:flex-row items-center gap-4"
               >
                 <img
                   src={product?.image}
@@ -76,8 +72,8 @@ export const CartPage = ({
                   <h3 className="text-xl font-semibold">{product?.name}</h3>
                   <p className="text-gray-700">Price: UGX {product?.price}</p>
                 </div>
-                <div className="mt-2 flex flex-col ml-auto items-end">
-                  <p className="text-gray-700">Product ID: {itemId}-dsvdgfhjkjgfs</p>
+                <div className="mt-2 flex flex-col ml-auto items-center">
+                  <p className="text-gray-700">Product ID: {itemId}</p>
                   <div className="mt-2 flex items-center gap-2 p-2 rounded w-72 justify-left align-middle">
                     <p className="flex align-middle justify-left w-full gap-4">
                       Quantity:
@@ -103,7 +99,6 @@ export const CartPage = ({
                   </div>
                 </div>
               </div>
-              // </Link>
             );
           })
         ) : (
