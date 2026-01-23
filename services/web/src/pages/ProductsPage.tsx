@@ -6,6 +6,7 @@ export const ProductsPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [cartItems, setCartItems] = useState<number[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [productIndex, setProductIndex] = useState(0);
 
   const images: string[] = [
