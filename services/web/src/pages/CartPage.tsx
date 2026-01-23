@@ -41,7 +41,7 @@ export const CartPage = ({
   }, 0);
 
   return (
-    <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-[90] m-4 flex flex-col align-middle justify-center">
+    <div className="bg-white p-4 rounded shadow-md shadow-blue-500 w-[90%] m-4 flex flex-col align-middle justify-center">
       <h2 className="text-2xl text-center font-bold">CartPage</h2>{" "}
       {/* Cart Items List bold text */}
       <hr className="my-4 border-gray-700 border-b-2" />
