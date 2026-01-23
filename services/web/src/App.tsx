@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
 import { getLocalCartItems, setLocalCartItems } from "./utils/localCartStorage";
+import { ProductsPage } from "./pages/ProductsPage";
 
 function App() {
   const [productIndex, setProductIndex] = useState(0);
@@ -30,6 +31,7 @@ function App() {
           />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route path="/products" element={<ProductsPage />} />
 
           <Route
             path="/productdetails"
@@ -41,6 +43,8 @@ function App() {
               />
             }
           />
+
+          <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </Router>
       <Footer />

@@ -25,6 +25,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         src={product.image}
         alt={product.name}
         className="w-full h-48 object-cover rounded-t-md mb-2"
+        style={{
+          backgroundPosition: "center",
+          backgroundSize: "contain",
+        }}
       />
       <h2 className="text-xl font-bold mb-2">{product.name}</h2>
       <p className="text-gray-700 mb-2">{product.description}</p>
