@@ -45,7 +45,7 @@ export const CartPage = ({
       <h2 className="text-2xl text-center font-bold">CartPage</h2>{" "}
       {/* Cart Items List bold text */}
       <hr className="my-4 border-gray-700 border-b-2" />
-      <div className="mt-4 flex justify-between items-center">
+      <div className="mt-4 flex flex-col md:flex-row items-start gap-2 justify-between md:items-center">
         <p className="md:text-xl font-semibold">Total Cost: UGX {expense}</p>
         <button
           className="p-2 bg-red-700 rounded text-white min-w-12 px-6 py-3 sm:px-3 text-base cursor-pointer hover:bg-red-600"
@@ -66,7 +66,7 @@ export const CartPage = ({
                 <img
                   src={product?.image}
                   alt={product?.name}
-                  className="w-24 h-24 object-cover rounded"
+                  className="w-60 h-60 md:w-24 md:h-24 object-cover rounded"
                 />
                 <div className="mt-2 flex flex-col">
                   <h3 className="text-xl font-semibold">{product?.name}</h3>
