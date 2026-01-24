@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../utils/generateToken';
 
-// Extend Express Request type
 declare global {
   namespace Express {
     interface Request {
@@ -23,7 +22,6 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
       return;
     }
 
-    // Format: "Bearer TOKEN"
     const token = authHeader.split(' ')[1];
 
     if (!token) {
@@ -41,7 +39,6 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): v
   }
 };
 
-// Optional: Role-based authorization
 export const authorize = (...allowedRoles: string[]) => {
   return (req: Request, res: Response, next: NextFunction): void => {
     if (!req.user) {

@@ -7,6 +7,8 @@ const router = express.Router();
 // Get current user profile
 router.get('/profile', authenticate, async (req, res) => {
   try {
+    console.log('Profile request for user:', req.user?.userId);
+    
     const user = await User.findById(req.user?.userId).select('-password');
     
     if (!user) {
