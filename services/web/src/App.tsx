@@ -10,6 +10,10 @@ import "./App.css";
 
 import { getLocalCartItems, setLocalCartItems } from "./utils/localCartStorage";
 import { ProductsPage } from "./pages/ProductsPage";
+import { SignUpPage } from "./pages/SignUpPage";
+import { SignInPage } from "./pages/SignInPage";
+import { SellerDashboardPage } from "./pages/dashboards/SellerDashboardPage";
+import { AddProduct } from "./pages/dashboards/AddProduct";
 
 function App() {
   const [productIndex, setProductIndex] = useState(0);
@@ -32,6 +36,12 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
           <Route path="/products" element={<ProductsPage />} />
+
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+
+          <Route path="/seller/dashboard" element={<SellerDashboardPage />} />
+          <Route path="/add-product" element={<AddProduct />} />
 
           <Route
             path="/productdetails"
