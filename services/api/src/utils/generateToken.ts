@@ -13,9 +13,7 @@ export const generateToken = (payload: TokenPayload): string => {
     throw new Error('JWT_SECRET is not defined in environment variables');
   }
 
-  return jwt.sign(payload, secret, {
-    expiresIn: process.env.JWT_EXPIRES_IN || '7d',
-  });
+  return jwt.sign(payload, secret, { expiresIn: '7d' });
 };
 
 export const verifyToken = (token: string): TokenPayload => {
