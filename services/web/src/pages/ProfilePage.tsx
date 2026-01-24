@@ -58,7 +58,7 @@ export const ProfilePage = () => {
           //
         } catch (err: unknown) {
           console.error("Profile fetch error:", err);
-          setError(err.message || "An error occurred");
+          setError("An error occurred");
         } finally {
           setLoading(false);
         }
@@ -94,7 +94,7 @@ export const ProfilePage = () => {
           //
         } catch (err: unknown) {
           console.error("Profile fetch error:", err);
-          setError(err.message || "An error occurred");
+          setError("An error occurred");
         } finally {
           setLoading(false);
         }
