@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import { getLocalCartItems, setLocalCartItems } from "./utils/localCartStorage";
+import { getLocalCartItems, setLocalCartItems } from "./utils/localStorage";
 import { ProductsPage } from "./pages/ProductsPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { SignInPage } from "./pages/SignInPage";

@@ -128,7 +128,7 @@ export const AdminDashboardPage = () => {
                       />
                       <div>
                         <h3 className="text-xl font-semibold text-black">
-                          {user.username} - {user.accountType.charAt(0).toUpperCase() + user.accountType.slice(1)}
+                          {user.name} - {user.accountType.charAt(0).toUpperCase() + user.accountType.slice(1)}
                         </h3>
                         <p className="text-gray-600 text-xl">
                           Email: {user.email}
@@ -160,7 +160,7 @@ export const AdminDashboardPage = () => {
                       />
                       <div>
                         <h3 className="text-xl font-semibold text-black">
-                          {user.username} - {user.accountType.charAt(0).toUpperCase() + user.accountType.slice(1)}
+                          {user.name} - {user.accountType.charAt(0).toUpperCase() + user.accountType.slice(1)}
                         </h3>
                         <p className="text-gray-600 text-xl">
                           Email: {user.email}

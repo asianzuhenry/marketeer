@@ -1,14 +1,53 @@
 import { useState } from "react";
 import type { User } from "../types/basetypes";
+import { useNavigate } from "react-router-dom";
+
+// const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:3000";
 
 export const SignUpPage = () => {
   const [user, setUser] = useState<User>({
-    id: 0,
-    username: "",
+    name: "",
     email: "",
+    password: "",
     accountType: "buyer",
     phoneNumber: "",
   });
+  const navigate = useNavigate();
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('http://localhost:3000/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: user.email,
+        password: user.password,
+        name: user.name,
+        role: user.accountType,
+        phoneNumber: user.phoneNumber,
+        // Add other fields as needed
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Signup failed');
+    }
+
+    const data = await response.json();
+    console.log('Signup successful:', data.message);
+    navigate('/signin');
+    
+    // Handle success (redirect, show message, etc.)
+    
+  } catch (error) {
+    console.error('Signup failed:', error);
+    // Handle error (show error message to user)
+  }
+};
 
   return (
     <div 
@@ -31,7 +70,7 @@ export const SignUpPage = () => {
             <input
               id="username"
               type="text"
-              onChange={(e) => setUser({ ...user, username: e.target.value })}
+              onChange={(e) => setUser({ ...user, name: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -105,6 +144,7 @@ export const SignUpPage = () => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleSubmit}
           >
             Sign Up
           </button>

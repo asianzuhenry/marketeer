@@ -10,11 +10,11 @@ type Product = {
 };
 
 type User = {
-  id: number;
-  username: string;
+  id?: number;
+  name: string;
   email: string;
   password?: string;
-  accountType: "buyer" | "seller";
+  accountType: "buyer" | "seller" | "admin";
   phoneNumber?: string;
 };
 
