@@ -14,6 +14,7 @@ import { SignUpPage } from "./pages/SignUpPage";
 import { SignInPage } from "./pages/SignInPage";
 import { SellerDashboardPage } from "./pages/dashboards/SellerDashboardPage";
 import { AddProduct } from "./pages/dashboards/AddProduct";
+import { AdminDashboardPage } from "./pages/dashboards/AdminDashboardPage";
 
 function App() {
   const [productIndex, setProductIndex] = useState(0);
@@ -41,6 +42,7 @@ function App() {
           <Route path="/signin" element={<SignInPage />} />
 
           <Route path="/seller/dashboard" element={<SellerDashboardPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route path="/add-product" element={<AddProduct />} />
 
           <Route
