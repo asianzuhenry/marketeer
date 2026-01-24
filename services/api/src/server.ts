@@ -9,19 +9,21 @@ dotenv.config();
 
 const app = express();
 
-// CORS// CORS Configuration
+// CORS Configuration
 const getAllowedOrigins = (): string[] => {
   if (process.env.NODE_ENV === 'production') {
-    // Production origins from environment variable
-    return process.env.ALLOWED_ORIGINS?.split(',') || ["https://marketeer-five.vercel.app"];
+    // Production: only allow Vercel frontend
+    return ['https://marketeer-five.vercel.app'];
   }
-  // Development origins
+  // Development: allow localhost
   return [
     'http://localhost:3000',
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5173',
   ];
 };
-
 const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
     const allowedOrigins = getAllowedOrigins();
