@@ -13,16 +13,12 @@ const app = express();
 const getAllowedOrigins = (): string[] => {
   if (process.env.NODE_ENV === 'production') {
     // Production origins from environment variable
-    return process.env.ALLOWED_ORIGINS?.split(',') || [];
+    return process.env.ALLOWED_ORIGINS?.split(',') || ["https://marketeer-five.vercel.app"];
   }
   // Development origins
   return [
     'http://localhost:3000',
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:5173',
-    'http://127.0.0.1:5174',
+    'http://localhost:5173'
   ];
 };
 
