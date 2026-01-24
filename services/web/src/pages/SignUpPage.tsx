@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { User } from "../types/basetypes";
 import { useNavigate } from "react-router-dom";
 
-// const BACKEND_URL = import.meta.env.BACKEND_URL || "http://localhost:3000";
+const environment = import.meta.env.VITE_ENVIRONMENT;
 
 export const SignUpPage = () => {
   const [user, setUser] = useState<User>({
@@ -14,49 +14,85 @@ export const SignUpPage = () => {
   });
   const navigate = useNavigate();
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  try {
-    const response = await fetch('http://localhost:3000/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: user.email,
-        password: user.password,
-        name: user.name,
-        role: user.accountType,
-        phoneNumber: user.phoneNumber,
-        // Add other fields as needed
-      }),
-    });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    if (!response.ok) {
-      throw new Error('Signup failed');
+    if (environment == "development") {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              password: user.password,
+              name: user.name,
+              role: user.accountType,
+              phoneNumber: user.phoneNumber,
+              // Add other fields as needed
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error("Signup failed");
+        }
+        const data = await response.json();
+        console.log("Signup successful:", data.message);
+        navigate("/signin");
+
+        // Handle success (redirect, show message, etc.)
+      } catch (error) {
+        console.error("Signup failed:", error);
+        // Handle error (show error message to user)
+      }
+    } else if (environment == "production") {
+      try {
+        const response = await fetch(
+          "https://marketeer.onrender.com/api/auth/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              password: user.password,
+              name: user.name,
+              role: user.accountType,
+              phoneNumber: user.phoneNumber,
+              // Add other fields as needed
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          throw new Error("Signup failed");
+        }
+        const data = await response.json();
+        console.log("Signup successful:", data.message);
+        navigate("/signin");
+
+        // Handle success (redirect, show message, etc.)
+      } catch (error) {
+        console.error("Signup failed:", error);
+        // Handle error (show error message to user)
+      }
     }
-
-    const data = await response.json();
-    console.log('Signup successful:', data.message);
-    navigate('/signin');
-    
-    // Handle success (redirect, show message, etc.)
-    
-  } catch (error) {
-    console.error('Signup failed:', error);
-    // Handle error (show error message to user)
-  }
-};
+  };
 
   return (
-    <div 
-    style={{
-      backgroundImage: `url('https://static.vecteezy.com/system/resources/thumbnails/007/077/577/small_2x/natural-green-background-with-curved-pattern-suitable-for-nature-theme-banner-vector.jpg')`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-    className="w-full h-screen bg-gray-600 flex items-center justify-center">
+    <div
+      style={{
+        backgroundImage: `url('https://static.vecteezy.com/system/resources/thumbnails/007/077/577/small_2x/natural-green-background-with-curved-pattern-suitable-for-nature-theme-banner-vector.jpg')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+      className="w-full h-screen bg-gray-600 flex items-center justify-center"
+    >
       <div className="bg-white p-8 rounded shadow-md w-[90%] max-w-md ">
         <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
         <form>
@@ -148,7 +184,12 @@ const handleSubmit = async (e: React.FormEvent) => {
           >
             Sign Up
           </button>
-          <p className="m-6">Already have an account? <a href="/signin" className="text-blue-500 hover:text-blue-700">Sign In</a></p>
+          <p className="m-6">
+            Already have an account?{" "}
+            <a href="/signin" className="text-blue-500 hover:text-blue-700">
+              Sign In
+            </a>
+          </p>
         </form>
       </div>
     </div>

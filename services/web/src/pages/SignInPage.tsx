@@ -3,48 +3,81 @@ import { useNavigate } from "react-router-dom";
 import { setToken } from "../utils/localStorage";
 // import type { User } from "../types/basetypes";
 
+const environment = import.meta.env.VITE_ENVIRONMENT;
+
 export const SignInPage = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  
+
   const navigate = useNavigate();
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  try {
-    const response = await fetch('http://localhost:3000/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: user.email,
-        password: user.password,
-      }),
-    });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    const data = await response.json();
+    if (environment == "development") {
+      try {
+        const response = await fetch("http://localhost:3000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+            password: user.password,
+          }),
+        });
 
-    if (!response.ok) {
-      throw new Error(data.message || 'Signin failed');
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Signin failed");
+        }
+
+        // Store token and user data
+        setToken(data.token);
+        setUser(data.user);
+
+        console.log("Signin successful:", data);
+
+        // Redirect to profile
+        navigate("/profile");
+      } catch (error) {
+        console.error("Signin failed:", error);
+      }
+    } else if (environment == "prodution") {
+      try {
+        const response = await fetch("https://marketeer.onrender.com/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: user.email,
+            password: user.password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Signin failed");
+        }
+
+        // Store token and user data
+        setToken(data.token);
+        setUser(data.user);
+
+        console.log("Signin successful:", data);
+
+        // Redirect to profile
+        navigate("/profile");
+      } catch (error) {
+        console.error("Signin failed:", error);
+      }
     }
-
-    // Store token and user data
-    setToken(data.token);
-    setUser(data.user);
-
-    console.log('Signin successful:', data);
-    
-    // Redirect to profile
-    navigate('/profile');
-    
-  } catch (error) {
-    console.error('Signin failed:', error);
-  }
-};
+  };
 
   return (
     <div

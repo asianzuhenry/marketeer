@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getToken, removeToken } from "../utils/localStorage";
 
+const environment = import.meta.env.VITE_ENVIRONMENT;
+
 interface UserData {
   id: string;
   email: string;
@@ -26,40 +28,79 @@ export const ProfilePage = () => {
     }
 
     // Fetch user profile
-    const fetchProfile = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/users/profile",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+    if (environment === "development") {
+      const fetchProfile = async () => {
+        try {
+          const response = await fetch(
+            "http://localhost:3000/api/users/profile",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
             },
-          },
-        );
+          );
 
-        if (!response.ok) {
-          if (response.status === 401) {
-            // Token is invalid or expired
-            removeToken();
-            navigate("/signin");
-            return;
+          if (!response.ok) {
+            if (response.status === 401) {
+              // Token is invalid or expired
+              removeToken();
+              navigate("/signin");
+              return;
+            }
+            throw new Error("Failed to fetch profile");
           }
-          throw new Error("Failed to fetch profile");
+
+          const data = await response.json();
+          setUserData(data.user);
+
+          //
+        } catch (err: unknown) {
+          console.error("Profile fetch error:", err);
+          setError(err.message || "An error occurred");
+        } finally {
+          setLoading(false);
         }
+      };
+      fetchProfile();
+    } else if (environment === "production") {
+      const fetchProfile = async () => {
+        try {
+          const response = await fetch(
+            "https://marketeer.onrender.com/api/users/profile",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          );
 
-        const data = await response.json();
-        setUserData(data.user);
-      } catch (err: unknown) {
-        console.error("Profile fetch error:", err);
-        setError(err.message || "An error occurred");
-      } finally {
-        setLoading(false);
-      }
-    };
+          if (!response.ok) {
+            if (response.status === 401) {
+              // Token is invalid or expired
+              removeToken();
+              navigate("/signin");
+              return;
+            }
+            throw new Error("Failed to fetch profile");
+          }
 
-    fetchProfile();
+          const data = await response.json();
+          setUserData(data.user);
+
+          //
+        } catch (err: unknown) {
+          console.error("Profile fetch error:", err);
+          setError(err.message || "An error occurred");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchProfile();
+    }
   }, [navigate]);
 
   const handleLogout = () => {
