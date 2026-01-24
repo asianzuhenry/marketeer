@@ -46,18 +46,21 @@ export const SignInPage = () => {
       } catch (error) {
         console.error("Signin failed:", error);
       }
-    } else if (environment == "prodution") {
+    } else if (environment == "production") {
       try {
-        const response = await fetch("https://marketeer.onrender.com/api/auth/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
+        const response = await fetch(
+          "https://marketeer.onrender.com/api/auth/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: user.email,
+              password: user.password,
+            }),
           },
-          body: JSON.stringify({
-            email: user.email,
-            password: user.password,
-          }),
-        });
+        );
 
         const data = await response.json();
 
