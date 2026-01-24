@@ -8,4 +8,14 @@ type Product = {
   status?: "Instock" | "Outofstock";
   otherImages?: string[];
 };
-export type { Product };
+
+type User = {
+  id: number;
+  username: string;
+  email: string;
+  password?: string;
+  accountType: "buyer" | "seller";
+  phoneNumber?: string;
+};
+
+export type { Product, User };

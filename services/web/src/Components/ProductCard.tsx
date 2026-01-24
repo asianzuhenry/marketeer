@@ -20,7 +20,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     setProductIndex(index);
   };
   return (
-    <div className="bg-white hover:bg-gray-100 hover:cursor-pointer hover:scale-105 transition-transform duration-300 p-4 rounded shadow-md shadow-blue-500 w-96 m-4 sm:m-0">
+    <div className="bg-white hover:bg-gray-100 hover:cursor-pointer hover:scale-105 transition-transform duration-300 p-2 md:p-4 rounded shadow-md shadow-blue-500 w-full md:w-96 m-4 sm:m-0">
       <img
         src={product.image}
         alt={product.name}

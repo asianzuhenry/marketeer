@@ -53,7 +53,7 @@ export const ProductsPage = () => {
           className="w-full h-full flex flex-col items-center justify-center"
         >
           {/* Overlay for better text visibility */}
-          <div className="bg-white bg-opacity-75 p-8 rounded shadow-md text-center">
+          <div className="bg-white w-[90%] md:w-[40%] bg-opacity-75 p-8 rounded shadow-md text-center">
             <h1 className="text-4xl font-bold mb-4">Our Products</h1>
             <p className="text-lg">
               Explore our wide range of products tailored to meet your needs.
