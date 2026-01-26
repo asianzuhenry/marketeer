@@ -6,7 +6,7 @@ const environment = import.meta.env.VITE_ENVIRONMENT;
 
 export const ProductsPage = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [cartItems, setCartItems] = useState<number[]>([]);
+  const [cartItems, setCartItems] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [productIndex, setProductIndex] = useState(0);
   const [productsList, setProductsList] = useState<Product[]>([]);
@@ -19,6 +19,9 @@ export const ProductsPage = () => {
     "https://img.freepik.com/free-photo/modern-stationary-collection-arrangement_23-2149309649.jpg?semt=ais_hybrid&w=740&q=80",
     "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UF894,1000_QL80_.jpg",
   ];
+
+  console.log(productIndex);
+  
 
   // Carousel effect
   useEffect(() => {
