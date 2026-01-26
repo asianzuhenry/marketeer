@@ -9,8 +9,8 @@ export const HomePage = ({
   cartItems,
 }: {
   setProductIndex: (index: number) => void;
-  setCartItems:  (items: number[]) => void;
-  cartItems: number[];
+  setCartItems:  (items: string[]) => void;
+  cartItems: string[];
 }) => {
   return (
     <div>
@@ -48,7 +48,7 @@ export const HomePage = ({
           {products.map((product: Product, index: number) => {
             return (
               <ProductCard
-                key={product.id}
+                key={product._id}
                 product={product}
                 index={index}
                 setProductIndex={setProductIndex}

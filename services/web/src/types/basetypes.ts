@@ -1,6 +1,6 @@
 
 type Product = {
-  id?: string;
+  _id?: string;
   name: string;
   description: string;
   image: string;
@@ -8,6 +8,7 @@ type Product = {
   category: string;
   status?: "Instock" | "Outofstock";
   otherImages?: string[] | string;
+  seller?: string
 };
 
 type User = {

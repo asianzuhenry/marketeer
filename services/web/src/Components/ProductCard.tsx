@@ -5,8 +5,8 @@ interface ProductCardProps {
   product: Product;
   setProductIndex: (index: number) => void;
   index: number;
-  cartItems: number[]; // Assuming product IDs are numbers; adjust type as needed
-  setCartItems: (items: number[]) => void;
+  cartItems: string[]; // Assuming product IDs are numbers; adjust type as needed
+  setCartItems: (items: string[]) => void;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -23,7 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     const handleAddToCart = () => {
     if (product?._id) {
       // Store product ID in cart
-      setCartItems([...cartItems, product._id as number]);
+      setCartItems([...cartItems, product._id]);
       alert("Product added to cart!");
     }
   };

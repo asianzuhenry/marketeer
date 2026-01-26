@@ -19,13 +19,16 @@ import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   const [productIndex, setProductIndex] = useState(0);
-  const [cartItems, setCartItems] = useState<number[]>(() =>
+  const [cartItems, setCartItems] = useState<string[]>(() =>
     getLocalCartItems(),
   );
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const token = localStorage.getItem("token");
     return !!token;
   });
+
+  console.log(productIndex);
+  
 
   useEffect(() => {
     // save cart items to local storage whenever cartItems changes

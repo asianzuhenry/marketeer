@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export const NavBar = ({ cartItems, isLoggedIn }: { cartItems: number[], isLoggedIn: boolean }) => {
+export const NavBar = ({ cartItems, isLoggedIn }: { cartItems: string[], isLoggedIn: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (

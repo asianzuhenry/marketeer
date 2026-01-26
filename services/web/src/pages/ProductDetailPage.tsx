@@ -8,8 +8,8 @@ export const ProductDetailPage = ({
   cartItems,
   setCartItems,
 }: {
-  cartItems: number[];
-  setCartItems: (items: number[]) => void;
+  cartItems: string[];
+  setCartItems: (items: string[]) => void;
 }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [product, setProduct] = useState<Product | null>(null);
@@ -63,7 +63,7 @@ export const ProductDetailPage = ({
   const handleAddToCart = () => {
     if (product?._id) {
       // Store product ID in cart
-      setCartItems([...cartItems, product._id as any]);
+      setCartItems([...cartItems, product._id]);
       alert("Product added to cart!");
     }
   };
@@ -150,7 +150,7 @@ export const ProductDetailPage = ({
             <div className="bg-gray-100 p-4 rounded mb-4">
               <p className="text-2xl font-bold text-blue-600">
                 UGX {typeof product.price === 'number' 
-                  ? product.price.toLocaleString() 
+                  ? product.price + ""
                   : product.price}
               </p>
             </div>
@@ -192,12 +192,12 @@ export const ProductDetailPage = ({
                 <p className="text-sm text-gray-500 mb-1">Sold by</p>
                 <p className="text-lg font-medium">
                   {typeof product.seller === 'object' && 'name' in product.seller 
-                    ? product.seller.name 
+                    ? product.seller
                     : 'Seller'}
                 </p>
                 {typeof product.seller === 'object' && 'phoneNumber' in product.seller && (
                   <p className="text-sm text-gray-600 mt-1">
-                    Contact: {product.seller.phoneNumber}
+                    Contact: {/* product.seller.phoneNumber */}
                   </p>
                 )}
               </div>
