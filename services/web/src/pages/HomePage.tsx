@@ -1,15 +1,17 @@
 import { ProductCard } from "../Components/ProductCard";
-import { products } from "../data/products";
+// import { products } from "../data/products";
 import { Services } from "../data/Services";
 import type { Product } from "../types/basetypes";
 
 export const HomePage = ({
-  setProductIndex,
+  productsList,
   setCartItems,
+  setProductIndex,
   cartItems,
 }: {
-  setProductIndex: (index: number) => void;
+  productsList: Product[];
   setCartItems:  (items: string[]) => void;
+  setProductIndex: (index: number) => void
   cartItems: string[];
 }) => {
   return (
@@ -45,7 +47,7 @@ export const HomePage = ({
         <hr className="border-t border-gray-300 mb-4 py-12" />
         <div 
         className="w-full p-2 lg:w-full lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 flex sm:justify-center flex-col items-center">
-          {products.map((product: Product, index: number) => {
+          {productsList.map((product: Product, index: number) => {
             return (
               <ProductCard
                 key={product._id}

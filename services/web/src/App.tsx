@@ -16,6 +16,9 @@ import { SellerDashboardPage } from "./pages/dashboards/SellerDashboardPage";
 import { AddProduct } from "./pages/dashboards/AddProduct";
 import { AdminDashboardPage } from "./pages/dashboards/AdminDashboardPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import type { Product } from "./types/basetypes";
+
+const environment = import.meta.env.VITE_ENVIRONMENT;
 
 function App() {
   const [productIndex, setProductIndex] = useState(0);
@@ -26,9 +29,42 @@ function App() {
     const token = localStorage.getItem("token");
     return !!token;
   });
+  const [productsList, setProductsList] = useState<Product[]>([]);
 
   console.log(productIndex);
-  
+
+  const getProducts = async () => {
+
+    // Determine API URL - use the public endpoint to get ALL products
+    const apiUrl =
+      environment === "development"
+        ? "http://localhost:3000/api/products"
+        : "https://marketeer.onrender.com/api/products";
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to fetch products");
+      }
+
+      console.log("Products fetched successfully:", data);
+
+      // The backend returns { message, count, products }
+      setProductsList(data.products || []);
+    } catch (error) {
+      console.error("Fetch products failed:", error);
+    }
+  };
+
+  getProducts()
 
   useEffect(() => {
     // save cart items to local storage whenever cartItems changes
@@ -44,8 +80,9 @@ function App() {
             path="/"
             element={
               <HomePage
-                setProductIndex={setProductIndex}
+                productsList={productsList}
                 setCartItems={setCartItems}
+                setProductIndex={setProductIndex}
                 cartItems={cartItems}
               />
             }
@@ -61,7 +98,10 @@ function App() {
 
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
-          <Route path="/profile" element={<ProfilePage setIsLoggedIn={setIsLoggedIn} />} />
+          <Route
+            path="/profile"
+            element={<ProfilePage setIsLoggedIn={setIsLoggedIn} />}
+          />
 
           <Route path="/seller/dashboard" element={<SellerDashboardPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
