@@ -13,7 +13,7 @@ interface UserData {
   phoneNumber?: string;
 }
 
-export const ProfilePage = () => {
+export const ProfilePage = ({ setIsLoggedIn }: {setIsLoggedIn: (index: boolean) => void}) => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -82,6 +82,7 @@ export const ProfilePage = () => {
             if (response.status === 401) {
               // Token is invalid or expired
               removeToken();
+              setIsLoggedIn(false)
               navigate("/signin");
               return;
             }
@@ -101,7 +102,7 @@ export const ProfilePage = () => {
       };
       fetchProfile();
     }
-  }, [navigate]);
+  }, [navigate, setIsLoggedIn]);
 
   const handleLogout = () => {
     removeToken();
@@ -139,10 +140,10 @@ export const ProfilePage = () => {
   return (
     <div className="w-full min-h-screen bg-gray-100 p-4 flex flex-col items-center">
       <div className="w-full max-w-2xl mt-10 flex flex-col items-center">
-        {userData?.role === "buyer" ? (
+        {userData?.role === "admin" ? (
           <img
             className="w-60 h-60 rounded-full mb-4"
-            src="https://cdn.vectorstock.com/i/500p/20/76/man-profile-icon-round-avatar-vector-21372076.jpg"
+            src="https://cdn-icons-png.flaticon.com/512/9203/9203764.png"
             alt="Profile page"
           />
         ) : userData?.role === "seller" ? (
@@ -216,7 +217,7 @@ export const ProfilePage = () => {
               )}
               {userData.role === "admin" && (
                 <Link
-                  to="/seller/dashboard"
+                  to="/admin/dashboard"
                   className="flex-1 px-4 py-2 text-center bg-green-600 text-white rounded hover:bg-green-700 transition"
                 >
                   View Dashboard

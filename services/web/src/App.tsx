@@ -19,7 +19,13 @@ import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   const [productIndex, setProductIndex] = useState(0);
-  const [cartItems, setCartItems] = useState<number[]>(() => getLocalCartItems());
+  const [cartItems, setCartItems] = useState<number[]>(() =>
+    getLocalCartItems(),
+  );
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const token = localStorage.getItem("token");
+    return !!token;
+  });
 
   useEffect(() => {
     // save cart items to local storage whenever cartItems changes
@@ -28,30 +34,40 @@ function App() {
 
   return (
     <>
-      <NavBar cartItems={cartItems} />
+      <NavBar cartItems={cartItems} isLoggedIn={isLoggedIn} />
       <Router>
         <Routes>
           <Route
             path="/"
-            element={<HomePage setProductIndex={setProductIndex} setCartItems={setCartItems} cartItems={cartItems} />}
+            element={
+              <HomePage
+                setProductIndex={setProductIndex}
+                setCartItems={setCartItems}
+                cartItems={cartItems}
+              />
+            }
           />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route
+            path="/cart"
+            element={
+              <CartPage cartItems={cartItems} setCartItems={setCartItems} />
+            }
+          />
           <Route path="/products" element={<ProductsPage />} />
 
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage setIsLoggedIn={setIsLoggedIn} />} />
 
           <Route path="/seller/dashboard" element={<SellerDashboardPage />} />
           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route path="/add-product" element={<AddProduct />} />
 
           <Route
-            path="/productdetails"
+            path="/productdetails/:id"
             element={
               <ProductDetailPage
-                productIndex={productIndex}
                 cartItems={cartItems}
                 setCartItems={setCartItems}
               />

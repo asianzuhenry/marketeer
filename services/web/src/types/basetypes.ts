@@ -1,16 +1,17 @@
+
 type Product = {
-  id: number;
+  id?: string;
   name: string;
   description: string;
   image: string;
-  price: number;
+  price: string;
   category: string;
   status?: "Instock" | "Outofstock";
-  otherImages?: string[];
+  otherImages?: string[] | string;
 };
 
 type User = {
-  id?: number;
+  id?: string;
   name: string;
   email: string;
   password?: string;

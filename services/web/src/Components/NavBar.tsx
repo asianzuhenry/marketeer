@@ -1,20 +1,20 @@
-import { useState } from "react";
-// import { getLocalCartItems } from "../utils/localCartStorage";
+import { useState, useEffect } from "react";
 
-export const NavBar = (
-  { cartItems }: { cartItems: number[] }
-) => {
+export const NavBar = ({ cartItems, isLoggedIn }: { cartItems: number[], isLoggedIn: boolean }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // ...existing code...
-
   return (
-    <div className="bg-green-700 text-white p-4 h-24 align-middle flex items-center px-8 justify-between">
-      <h1 className="text-2xl font-bold hover:text-blue-700 cursor-pointer">
+    <div className="bg-green-700 text-white p-4 h-24 align-middle flex items-center px-8 justify-between relative">
+      <a
+        href="/"
+        className="text-2xl font-bold hover:text-blue-700 cursor-pointer"
+      >
         Marketeer
-      </h1>
+      </a>
+
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <nav className="absolute top-24 left-0 w-full bg-green-700 text-white p-4 flex flex-col space-y-4">
+        <nav className="absolute top-24 left-0 w-full bg-green-700 text-white p-4 flex flex-col space-y-4 z-50 shadow-lg">
           <a href="/" className="hover:text-blue-700 text-xl">
             Home
           </a>
@@ -24,24 +24,38 @@ export const NavBar = (
           <a href="/products" className="hover:text-blue-700 text-xl">
             Products
           </a>
-          <a href="/signup" className="hover:text-blue-700 text-xl">
-            SignUp
-          </a>
+
+          {isLoggedIn ? (
+            <>
+              <a href="/profile" className="hover:text-blue-700 text-xl">
+                Profile
+              </a>
+            </>
+          ) : (
+            <>
+              <a href="/signin" className="hover:text-blue-700 text-xl">
+                Sign In
+              </a>
+              <a href="/signup" className="hover:text-blue-700 text-xl">
+                Sign Up
+              </a>
+            </>
+          )}
+
           <a
             href="/cart"
             className="hover:text-blue-700 bg-amber-700 min-w-12 px-6 py-3 text-base rounded cursor-pointer flex items-center gap-2 justify-between"
           >
-            Cart{" "}
+            Cart
             <div className="bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center">
               {cartItems.length}
             </div>
           </a>
         </nav>
       )}
-      {/* hide on mobile */}
+
+      {/* Desktop Navigation */}
       <nav className="items-center ml-8 sm:hidden hidden md:block lg:block">
-        {" "}
-        {/* Navigation Links - Desktop*/}
         <ul className="flex space-x-4 ml-8 h-full items-center">
           <li>
             <a href="/" className="hover:text-blue-700 text-xl">
@@ -58,11 +72,24 @@ export const NavBar = (
               Products
             </a>
           </li>
-          <li>
-            <a href="/signup" className="hover:text-blue-700 text-xl">
-              SignUp
-            </a>
-          </li>
+          {isLoggedIn == true ? (
+            <>
+              <li>
+                <a href="/profile" className="hover:text-blue-700 text-xl">
+                  Profile
+                </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a href="/signup" className="hover:text-blue-700 text-xl">
+                  Sign Up
+                </a>
+              </li>
+            </>
+          )}
+
           <li className="flex items-center gap-2">
             <a
               href="/cart"
@@ -73,16 +100,16 @@ export const NavBar = (
                 {cartItems.length}
               </div>
             </a>
-            {/* cart item count */}
           </li>
         </ul>
       </nav>
+
+      {/* Mobile Menu Button */}
       <button
-        className="bg-blue-700 hover:bg-blue-800 text-white font-bold
-         py-2 px-4 rounded sm:block md:hidden lg:hidden"
+        className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded sm:block md:hidden lg:hidden"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
-        Menu
+        {isMenuOpen ? "Close" : "Menu"}
       </button>
     </div>
   );

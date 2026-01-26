@@ -19,6 +19,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const setIndex = () => {
     setProductIndex(index);
   };
+
+    const handleAddToCart = () => {
+    if (product?._id) {
+      // Store product ID in cart
+      setCartItems([...cartItems, product._id as number]);
+      alert("Product added to cart!");
+    }
+  };
+
   return (
     <div className="bg-white hover:bg-gray-100 hover:cursor-pointer hover:scale-105 transition-transform duration-300 p-2 md:p-4 rounded shadow-md shadow-blue-500 w-full md:w-96 m-4 sm:m-0">
       <img
@@ -45,7 +54,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {product.status === "Instock" ? (
           <button
             className="mt-4 hover:cursor-pointer bg-blue-700 text-white min-h-12 min-w-12 px-6 py-3 text-base rounded hover:bg-blue-600"
-            onClick={() => setCartItems([...cartItems, product.id])}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>
@@ -58,7 +67,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </button>
         )}
         <Link
-          to="/productdetails"
+          to={`/productdetails/${product._id}`}
           state={{ productIndex: index }}
           onClick={() => setIndex()}
         >

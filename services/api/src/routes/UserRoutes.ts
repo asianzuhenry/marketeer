@@ -1,6 +1,14 @@
 import express from 'express';
 import { authenticate, authorize } from '../middleware/auth';
 import User from '../models/User';
+import {
+  getAllUsers,
+  getUser,
+  getMyProfile,
+  updateUser,
+  deleteUser,
+  getUserStats,
+} from "../controllers/UserController";
 
 const router = express.Router();
 
@@ -69,5 +77,13 @@ router.put('/profile', authenticate, async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+
+// Protected routes (require authentication)
+router.get("/me", authenticate, getMyProfile); // Get current user's profile
+router.get("/stats", authenticate, authorize("admin"), getUserStats); // Get user statistics (admin only)
+router.get("/", authenticate, authorize("admin"), getAllUsers); // Get all users (admin only)
+router.get("/:id", authenticate, getUser); // Get single user (admin or own profile)
+router.put("/:id", authenticate, updateUser); // Update user (admin or own profile)
+router.delete("/:id", authenticate, authorize("admin"), deleteUser); // Delete user (admin only)
 
 export default router;
