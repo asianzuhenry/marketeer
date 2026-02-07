@@ -1,0 +1,20 @@
+import type { User } from "../types/basetypes";
+
+const users: User[] = [
+    {
+        _id: "1",
+        name: "john_doe",
+        email: "john.doe@example.com",
+        accountType: "buyer",
+        phoneNumber: "123-456-7890",
+    },
+    {
+        _id: "2",
+        name: "jane_seller",
+        email: "jane.seller@example.com",
+        accountType: "seller",
+        phoneNumber: "098-765-4321",
+    }
+]
+
+export { users };
